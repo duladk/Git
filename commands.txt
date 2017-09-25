@@ -1,0 +1,12 @@
+cd Git
+git init
+git status
+vim tutorials.txt
+git add .
+git status
+git commit -m "Add tutorials.txt"
+git remote add origin https://github.com/duladk/Git.git
+git status
+git push -u origin master
+git status
+
