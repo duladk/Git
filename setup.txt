@@ -1,0 +1,177 @@
+Initial Setup Instructions
+
+Set Config Values
+-----------------
+
+git config --global user.name "John Doe"
+git config --global user.email "jd@mac.local"
+
+#user.name and user.email are set globally and will be used to identify
+#who made the changes. The email can be used to identify different machines
+#used by the same user. e.g. jd@mac.local, jd@ubuntu.local, jd@work.local
+
+List Config Values
+------------------
+
+git config --list
+
+Get Help On Git Actions
+-----------------------
+
+git help <action> 
+
+OR
+
+git <action> help
+
+Initialize A Local Project
+--------------------------
+
+cd MyProject
+git init
+
+#init creates .git directory which helps git track the project and hold
+#all config info for that particular repo.
+
+git status
+
+#status will show you the status of the files in the current directory you
+#just initialized. Untracked files will be show in red and tracked files
+#will be show in green. If you want to exclude certain files from being 
+#tracked - create a .gitignore files and add the files you would like git 
+#to ignore. Wildcards are allowed in this file - e.g. *.config, *.DS_Store
+
+echo "*.config" >> .gitignore
+git status
+
+#run git status again to verify the files specified in the .gitignore file
+#are not tracked by git
+
+#git works in 3 stages - local (working dir), staging (staging area), repo
+#(git repo). If you cd into a project directory and start editing files, these
+#edits are made in local. In order to move them to the staging area you need 
+#to run git add
+
+git add <filename>
+
+#to move all the files in the directory to the staging area, add -A or . flag
+
+git add -A
+
+OR
+
+git add .
+
+#if you want to remove files from the staging area so they are no longer tracked
+#you will need to run git reset
+
+git reset <filename>
+
+#to remover all files from the staging area run git reset without any flags
+
+git reset
+
+#once a file is modified and finalized we can run git commit with a memo about
+#what changed
+
+git commit -m "Clear explanation as to what changed"
+
+git status
+
+#git status should now tell you that there is nothing to commite and the working
+#dir is clean
+
+git log
+
+#git log will list the commited changes and details on who commited it
+
+Cloning A Remote Repo
+---------------------
+
+git clone https://github.com/..../repo.git .
+
+#to list information of the repo
+
+git remote -v
+
+#to list all the git branches run
+
+git branch -a
+
+#once you make any edits to an existing repo (local) you can run git diff to
+#see what changed in the files
+
+git diff
+
+#then we can add the files to the staging area and commit as we did before
+
+git status
+git add -A
+git commit -m "Latest modifications"
+
+#once commit is done - we need to run git pull to make sure we have the most
+#updated codebase (since other could have made changes while we were doing our
+#own
+
+git pull origin master
+
+#next we would push the changes we commited to the repo
+
+git push origin master
+
+Common Workflow
+---------------
+
+#in practice, whenever we would want to make edits to an existing repo we
+#would first create a branch from master to do our edits
+
+git branch <branch_name>
+
+#once you create your own branch, you can run git branch to see which branch
+#you are currently working on. To change to the new branch you created you
+#must run git checkout
+
+git branch
+git checkout <branch_name>
+
+#after edits are made and the files were moved to the staging area and then
+#commited, we must now push these changes to the branch repo. Note that we do
+#not need to do a pull request because you created the current branch and so
+#no one else would have edited your branch alongside you.
+
+git diff
+git add -A
+git status
+git commit -m "Edits to XYZ
+
+git push -u origin <branch_name>
+
+#once the modifications are pushed to the branch repo - unit tests etc will
+#run to check the code before its approved to be pushed to the master repo
+#once approved we must switch to the master repo, pull and push the code to
+#master
+
+git checkout master
+git branch -a
+git pull origin master
+
+#before we merge the branch to master, we can run git branch --merged to see
+#which repos were merged to the master before - then merge the branch you created
+#to master
+
+git branch --merged
+git merge origin <branch_name>
+git push origin master
+
+#once the branch has been successfully merged and pushed to the master repo
+#you can delete the branch
+
+git branch --merged
+git branch -d <branch_name>
+git branch -a
+
+#to delete the remote repo run
+
+git push origina --delete <branch_name>
+
+
