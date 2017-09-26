@@ -1,3 +1,6 @@
+#Videos
 https://www.youtube.com/watch?v=HVsySz-h9r4
+
+#Articles
 https://stackoverflow.com/questions/17096311/why-do-i-need-to-explicitly-push-a-new-branch
 https://www.atlassian.com/git/tutorials
