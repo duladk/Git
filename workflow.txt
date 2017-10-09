@@ -1,0 +1,40 @@
+if you need to copy a project from someone else and make your own changes to it and have it evolve into its own project then you need to follow the folk based approach
+
+fork project to ur account
+clone project to ur local machine
+running git remote -v will show where the cloned repo is linked to so when you push where it will push to (remote repo and branch) and when you pull where it will pull from - both should be you copy since your forked it before cloning
+in above case by default your remote will be named as origin and your branch will be named master
+whatever changes you make and commit will be made in the local repo 
+in order for you to update the github repo you need to push the local commited changes to the github repo
+but be sure to run git status to see if the github repo has changed from the time you cloned it (if you have other people or machines youve cloned this repo and pushed changes)
+if it has changed you need to pull changes from the github repo before you push the changes youve commited locallly
+
+fork git project to your own
+clone the forked copy to local
+check git remote -v (remote=origin, branch=master)
+make changes, add and commit locally
+git status to see if anythign has changes
+if it has - pull from origin master
+then push to origin master
+
+if you are trying to collaborate to someone else's proejct use the clone branch approach
+
+fork
+clone
+add remote upstream to main
+  - upstream master
+  - origin master
+branch new_feature
+checkout new_feature
+add
+commit
+push to origin master
+fetch upstream
+checkout master
+merge upstream/master 
+
+https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/
+https://www.atlassian.com/git/tutorials/comparing-workflows
+https://help.github.com/articles/syncing-a-fork/
+
+
