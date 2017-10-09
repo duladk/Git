@@ -37,4 +37,48 @@ https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/
 https://www.atlassian.com/git/tutorials/comparing-workflows
 https://help.github.com/articles/syncing-a-fork/
 
+workflow - 2
 
+git clone repo - clone github repo to local
+  - remote branch set as origin master linking to the repo you cloned from
+git status - shows whats differences between github repo and local repo
+git diff - to show line by line changes made
+git add . (-A) - add all the files modifed to index/stage - prep changes for commit
+git commit -m "made changes - be specific" -  commit staged changes to the local repo
+**
+git push (uses remote branch set before by default - origin/master - if you want to make another remote/branch explicityly specify - adding -u will make it permanant moving fwd)
+
+**
+on another instance if you are starting to work on projects do a git pull to get all the changes made by others while you were innactive
+if another collaborator has made modifications to the same file and same lines of code as you, the git pull will give a merge conflic error
+in the file where there is a cnflict - in the local copy you will see both your changes to that line as well as the changes made by the other user
+your changes will be placed after <<<<<< HEAD until ==========
+other's changes will be place after ========== until >>>>> XXX
+once the conflict is resolved and the changes are saved locally stage and commit (git add . and then git commit)
+this will bring up a vim window to type a lengthier commit message - none needed here since the just continues the merge so just save and quit (:wq)
+finally push the changes to the github repo by running git push
+
+get a work request to add a new feature
+git pull to get the latest version of the files
+you can run git branch to see any active branches
+create a branch for the new feature using git branch new_feature
+then run git checkout new_feature to siwtch to the new branch
+you can do the above all in one line by running git checkout -b new_feature
+once you switch to the new_branch you can make changes, stage and commit as many times as you need as this will not affect the master branch
+next we need to create a pull request for a code review by a peer or manager before they merge the changes to the master
+before we create a pull request we need to switch to the branch we are requestion mergiing this into and check if anything has changes in that branch
+switch to master branch (the branch we are trying to merge these changes to) by running git checkout master
+git pull (origin master) 
+if we see that there have been changes made to the master branch we need to switch back to the feature branch and do a git merge so  all the changes made to the master branch gets pulled to the feature branch
+git checkout new_feature
+git merge origin master (merge brings all the changes made and adds these commits betweent the original copy and the new changes you made so yours will be at the very end)
+during the merge we might get conflict errors if you have made changes to the same lines of code as the changes made to the master branch
+to resolve a conflic folow the same steps as git pull conflicts
+once conflicts are resolved, staged and commited push the changes to the branch new_feature
+go to github select the new_feature branch and create a pull request (click button the the left of branch selector)
+once the code is reviewd and made any adjustments the repo mod can merge the changes to the main branch (git checkout master - git merge new_feature)
+once the pull request is accepted and new_feature branch merged to master you can go ahead and delete the new_feature branch
+git branch -d new_feature
+next you can swicth to the master branch again and do a pull request to update the local origin master clone
+
+https://www.youtube.com/watch?v=oFYyTZwMyAg
