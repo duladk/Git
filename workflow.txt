@@ -38,7 +38,7 @@ https://www.atlassian.com/git/tutorials/comparing-workflows
 https://help.github.com/articles/syncing-a-fork/
 
 workflow - 2
-
+---------------
 git clone repo - clone github repo to local
   - remote branch set as origin master linking to the repo you cloned from
 git status - shows whats differences between github repo and local repo
